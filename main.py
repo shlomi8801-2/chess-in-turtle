@@ -112,19 +112,28 @@ def checkmove(block):
         return []
     if peice[1] == "p":
         if peice[0] == "w":
-            if board0[block+1] == "00" and block+1 <= 63:
+            if  block+1 <= 63 and (block+1)//8 == block//8:
                 # print("pawncan go")
-                t.clear()
-                moveable.append(block+1)
+                if board0[block+1] == "00":
+                    moveable.append(block+1)
                 if board0[block+2] == "00" and block+2 <= 63 and block % 8 == 1:
                     moveable.append(block+2)
+            if (block+1) // 8 == block // 8:
+                if board0[block-7][0] == "b" and block-7>=0:
+                    moveable.append(block-7)
+                if board0[block+9][0] == "b" and block+9 <= 63:
+                    moveable.append(block+9)
         elif peice[0] == "b":
-            if board0[block-1] == "00" and block-1 >= 0:
+            if block-1 >= 0 and (block-1)//8 == block//8:
                 # print("pawncan go")
-                t.clear()
-                moveable.append(block-1)
+                if board0[block-1] == "00":
+                    moveable.append(block-1)
                 if board0[block-2] == "00" and block-2 >= 0 and block % 8 == 6:
                     moveable.append(block-2)
+                if board0[block+7][0] == "w" and block+7 <= 63:
+                    moveable.append(block+7)
+                if board0[block-9][0] == "w" and block-9>=0:
+                    moveable.append(block-9)
     # rook movement
     if peice[1] == "r":
         # vertical movement UWU
